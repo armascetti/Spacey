@@ -2,18 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Space 
+import requests 
+API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
 
 # Create your views here.
-class Space:
-  def __init__(self, date, title, url,):
-    self.date = date
-    self.title = title
-    self.url = url 
-
-
-pics = [
-  Space('date', 'title', 'url')
-]
 
 def home(request):
   return render(request, 'home.html')
@@ -36,4 +29,11 @@ def signup(request):
   return render(request, 'signup.html', context)
 
 def pics_index(request):
-  return render(request, 'pics/index.html', { 'pics': pics })
+  url =f'https://api.nasa.gov/planetary/apod?api_key={API_KEY}'
+  response = requests.get(url)
+  data = response.json()
+  print(data)
+  context = {'data': data}
+  return render(request, 'pics/index.html', context )
+  # return render(request, 'pics/index.html', {'pics': pics})
+
