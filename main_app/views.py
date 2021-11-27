@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from spacey.settings import DATABASES
 from .models import Space 
 import requests 
+import json 
+
+
 API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
 
-# Create your views here.
 
+# Create your views here.
 def home(request):
   return render(request, 'home.html')
 
@@ -32,8 +36,8 @@ def pics_index(request):
   url =f'https://api.nasa.gov/planetary/apod?api_key={API_KEY}'
   response = requests.get(url)
   data = response.json()
-  print(data)
-  context = {'data': data}
+  pics = data['hdurl']
+  context = {'pics': pics}
   return render(request, 'pics/index.html', context )
-  # return render(request, 'pics/index.html', {'pics': pics})
+
 
