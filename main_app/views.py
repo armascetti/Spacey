@@ -5,7 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from spacey.settings import DATABASES
 from .models import Space 
 import requests 
-import json 
+import json
+from django.views.generic.edit import CreateView
 
 
 API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
@@ -37,7 +38,16 @@ def pics_index(request):
   response = requests.get(url)
   data = response.json()
   pics = data['hdurl']
-  context = {'pics': pics}
+  date = data['date']
+  title = data['title']
+  context = {'pics': pics, 'date': date, 'title': title}
   return render(request, 'pics/index.html', context )
 
-
+def pics_create(request):
+  date = request.GET.get('date')
+  url =f'https://api.nasa.gov/planetary/apod?api_key={API_KEY}'
+  response = requests.get(url)
+  data = response.json()
+  date = data['date']
+  context = {'date': date}
+  return render(request, 'main_app/pics_form.html', context)
