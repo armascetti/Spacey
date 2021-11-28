@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pics-index.css' %}"/>
+{% endblock %}
 
 {% block content %}
-
-<h1> All Pics </h1>
+<h1> All Pictures </h1>
 <section class ="Space-pics">
-
-<img src="{{pics}}" height="400px" width="400px"> 
+<img src="{{context.pics}}" height="400px" width="400px"> 
 <p> {{date}}</p>
 <p> {{title }}</p>
+
   </section>
 
 {% endblock %}

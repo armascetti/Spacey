@@ -3,15 +3,15 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}"/>
-{% endblock %}
+{% endblock head %}
 
 {% block content %}
 
 <h1> Search by Date to Find the Astronomy Picture for That Day! </h1>
-<form action="" method="get">
-  <input type="text" placeholder="YYYY-MM-DD" name="date">
-  <button type="submit" value="Search"> Search</button>
-  </form>
-
+<form action="{% url 'pics_create' %}" method = "get">
+    {% csrf_token %}
+    <input type="text" name="date">
+    <button type="submit" value="Search"> Search</button> 
+</form> 
 
 {% endblock %}
