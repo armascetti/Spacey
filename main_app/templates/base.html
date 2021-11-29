@@ -30,7 +30,7 @@
       <ul>
       {% if user.is_authenticated %}
         <li><a href="{% url 'pics_index' %}">All Pics</a></li>
-        <li><a href="{% url 'pics_create' %}">Add a Pic</a></li>
+        <li><a href="{% url 'pics_create_page' %}">Add a Pic</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li>
       {% else %}

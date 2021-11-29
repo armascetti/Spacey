@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 from .models import Space 
 import requests 
+import json 
 API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
 
 # def pics_index(request):
@@ -36,6 +37,7 @@ def pics_create_page(request):
 def pics_create(request):
   if request.method == "GET":
     date_query = request.GET.get('date')
+    print('dateeeee query', date_query)
     url =f'https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date_query}'
     response = requests.get(url)
     data = response.json()
@@ -44,28 +46,21 @@ def pics_create(request):
     title = data['title']
     context = {'date': date, 'url': url, 'title': title}
     print('here is the data', context)
-    return render(request, 'main_app/space_form.html', context)
-  elif request.method == 'POST':       
-      print("data", request.POST.get('title'))
-      space = Space(request.POST)
+    return render(request, 'pics/index.html', context)
+  else:
+    return render(request, 'main_app/space_form.html')
+
+
+def pics_add(request):
+  print("method getting hit", request)
+  if request.method == 'POST':   
+    if request.POST.get('title') and request.POST.get('url') and request.POST.get('date'):
+      space = Space()
       space.title = request.POST.get('title')
       space.url = request.POST.get('url')
       space.date = request.POST.get('date')
       space.save()
-      return render(request, 'pics/index.html')
-  else:
-    return render(request, 'main_app/space_form.html')
-
-# def pics_add(request):
-#   print("this is the post:", request.POST.get('date'))
-#   if request.method == 'POST':   
-#     if request.POST.get('title') and request.POST.get('url') and request.POST.get('date'):
-#       space = Space.objects.create()
-#       space.title = request.POST.get('title')
-#       space.url = request.POST.get('url')
-#       space.date = request.POST.get('date')
-#       space.save()
-#     return redirect(request, '/pics/')
+    return redirect(request, '/pics/')
 
 
 class Home(LoginView):

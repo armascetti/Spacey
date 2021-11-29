@@ -8,10 +8,19 @@
 {% block content %}
 <h1> All Pictures </h1>
 <section class ="Space-pics">
-<img src="{{context.pics}}" height="400px" width="400px"> 
-<p> {{date}}</p>
-<p> {{title }}</p>
 
+  <h1> Would You Like to Save This Picture? </h1>
+  <form action="{% url 'pics_add' %}" method = "post">
+    {% if url %}
+    {% csrf_token %}
+    <img name="url" src="{{url}}" height="300px" width="300px"> 
+    <h1 name="title">Title: {{title}} </h1>
+    <h4 name="date">Date: {{date}} </h4>
+    <button type="submit" value="save">Save</button> 
+</form> 
+ {% else %}
+   <h4>Search for a picture</h4>  
+   {% endif %}
   </section>
 
 {% endblock %}

@@ -10,22 +10,21 @@
 <h1> Search by Date to Find the Astronomy Picture for That Day! </h1>
 <form action="{% url 'pics_create' %}" method = "get">
     {% csrf_token %}
-    <input type="text" name="date">
+    <input type="text" name="date" placeholder="YYYY-MM-DD">
     <button type="submit" value="Search"> Search</button> 
 </form> 
 
 
 
- {% if url %}
-   <h1> Picture </h1>
-<form action="{% url 'pics_add' %}" method = "post">
-    {% csrf_token %}
-    <img name="url" src="{{url}}" height="100px" width="100px"> 
-    <h1 name="title">Title: {{title}} </h1>
-    <h4 name="date">Date: {{date}} </h4>
-    <button type="submit" value="Save">Save</button> 
+ {% comment %} {% if url %}
+   <form action="{% url 'pics_add' %}" method = "post">
+     {% csrf_token %}
+     <h1 name="title">Title: {{title}} </h1>
+     <img name="url" src="{{url}}" height="300px" width="300px"> 
+     <h4 name="date">Date: {{date}} </h4>
+     <button type="submit" value="Save">Save</button> 
 </form> 
   {% else %}
     <h4>Search for a picture</h4>  
-    {% endif %}
+    {% endif %} {% endcomment %}
     {% endblock %}
