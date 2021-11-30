@@ -28,7 +28,9 @@ def about(request):
   return render(request, 'about.html')
 
 def pics_index(request):
-  return render(request, 'pics/index.html')
+  all_pics = Space.objects.all()
+  return render(request, 'pics/index.html', {'action': "Display all pics", 'all_pics': all_pics})
+  
 
 def pics_create_page(request):
   return render (request, 'main_app/space_form.html')
@@ -53,14 +55,17 @@ def pics_add(request):
   print("method getting hit", request)
   if request.method == 'POST':   
     if request.POST.get('title') and request.POST.get('url') and request.POST.get('date'):
-      space = Space()
-      space.title = request.POST.get('title')
-      space.url = request.POST.get('url')
-      space.date = request.POST.get('date')
-      space.user = request.user
-      space.save()
+        space = Space()
+        space.title = request.POST.get('title')
+        space.url = request.POST.get('url')
+        space.date = request.POST.get('date')
+        space.user = request.user
+        space.save()     
     return redirect('/pics/')
 
+def page(request):
+    all_pics = Space.objects.all()
+    return render(request, 'page.html', {'action': "Display all pics", 'all_user_profile': all_pics})
 
 class Home(LoginView):
   template_name = 'home.html'
