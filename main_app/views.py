@@ -37,7 +37,6 @@ def pics_create_page(request):
 def pics_create(request):
   if request.method == "GET":
     date_query = request.GET.get('date')
-    print('dateeeee query', date_query)
     url =f'https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date_query}'
     response = requests.get(url)
     data = response.json()
@@ -45,7 +44,6 @@ def pics_create(request):
     url = data['hdurl']
     title = data['title']
     context = {'date': date, 'url': url, 'title': title}
-    print('here is the data', context)
     return render(request, 'pics/index.html', context)
   else:
     return render(request, 'main_app/space_form.html')
@@ -59,8 +57,9 @@ def pics_add(request):
       space.title = request.POST.get('title')
       space.url = request.POST.get('url')
       space.date = request.POST.get('date')
+      space.user = request.user
       space.save()
-    return redirect(request, '/pics/')
+    return redirect('/pics/')
 
 
 class Home(LoginView):

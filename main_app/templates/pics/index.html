@@ -9,13 +9,16 @@
 <h1> All Pictures </h1>
 <section class ="Space-pics">
 
+  {% if url %}
   <h1> Would You Like to Save This Picture? </h1>
+  <img name="url" src="{{url}}" height="300px" width="300px"> 
+  <h1 name="title">Title: {{title}} </h1>
+  <h4 name="date">Date: {{date}} </h4>
   <form action="{% url 'pics_add' %}" method = "post">
-    {% if url %}
     {% csrf_token %}
-    <img name="url" src="{{url}}" height="300px" width="300px"> 
-    <h1 name="title">Title: {{title}} </h1>
-    <h4 name="date">Date: {{date}} </h4>
+    <input hidden value="{{ title}}" name="title">
+    <input hidden value="{{ date}}" name="date">
+    <input hidden value="{{ url}}" name="url">
     <button type="submit" value="save">Save</button> 
 </form> 
  {% else %}

@@ -10,7 +10,7 @@ class Space(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.name
+    return f'{self.date}'
 
   def get_absolute_url(self):
     return reverse("pics_detail", kwargs={"pic_id": self.id})
