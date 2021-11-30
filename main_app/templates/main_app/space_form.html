@@ -14,16 +14,4 @@
     <button type="submit" value="Search"> Search</button> 
 </form> 
 
-
- {% comment %} {% if url %}
-   <form action="{% url 'pics_add' %}" method = "post">
-     {% csrf_token %}
-     <h1 name="title">Title: {{title}} </h1>
-     <img name="url" src="{{url}}" height="300px" width="300px"> 
-     <h4 name="date">Date: {{date}} </h4>
-     <button type="submit" value="Save">Save</button> 
-</form> 
-  {% else %}
-    <h4>Search for a picture</h4>  
-    {% endif %} {% endcomment %}
     {% endblock %}

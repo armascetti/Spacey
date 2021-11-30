@@ -1,5 +1,6 @@
 
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -20,6 +21,7 @@ API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
 #   return render(request, 'pics/index.html', context )
 
 
+
 # Create your views here.
 def home(request):
   return render(request, 'home.html')
@@ -27,15 +29,16 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def pics_index(request):
-  all_pics = Space.objects.all()
+  all_pics = Space.objects.filter(user=request.user)
   return render(request, 'pics/index.html', {'action': "Display all pics", 'all_pics': all_pics})
   
-
+@login_required
 def pics_create_page(request):
   return render (request, 'main_app/space_form.html')
 
-
+@login_required
 def pics_create(request):
   if request.method == "GET":
     date_query = request.GET.get('date')
@@ -50,7 +53,7 @@ def pics_create(request):
   else:
     return render(request, 'main_app/space_form.html')
 
-
+@login_required
 def pics_add(request):
   print("method getting hit", request)
   if request.method == 'POST':   
@@ -63,12 +66,14 @@ def pics_add(request):
         space.save()     
     return redirect('/pics/')
 
+@login_required
 def page(request):
     all_pics = Space.objects.all()
     return render(request, 'page.html', {'action': "Display all pics", 'all_user_profile': all_pics})
 
 class Home(LoginView):
   template_name = 'home.html'
+
 
 def signup(request):
   error_message = ''
