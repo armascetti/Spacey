@@ -9,9 +9,10 @@
 <h1> All Pictures </h1>
 <div>
   {% for pic in all_pics %}
+  <a href="{% url 'pics_delete' pic.id %}" class="btn danger">Delete</a>
   <img name="url" src="{{pic.url}}" height="300px" width="300px"> 
   <h1 name="title">Title: {{pic.title}} </h1>
-  <h4 name="date">Date: {{pic.date}} </h4>  
+  <h4 name="date">Date: {{pic.date}} </h4> <br>
 {% endfor %}
 
 

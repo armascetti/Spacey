@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Space 
 import requests 
 import json 
@@ -70,6 +71,11 @@ def pics_add(request):
 def page(request):
     all_pics = Space.objects.all()
     return render(request, 'page.html', {'action': "Display all pics", 'all_user_profile': all_pics})
+
+
+class SpaceDelete(LoginRequiredMixin, DeleteView):
+  model = Space
+  success_url = '/pics/'
 
 class Home(LoginView):
   template_name = 'home.html'
