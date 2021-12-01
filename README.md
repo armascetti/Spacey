@@ -7,16 +7,16 @@
   - Python
   - Django 
   - PostgreSQL
-  - Google 
+  - Google Fonts 
   - NASA APOD API 
 
 
 # Screenshots
- ![homepage](./static/images/../../main_app/static/images/homepage.png)
+ ![homepage](/main_app/static/images/addpic.PNG)
 
 
 
- ![homepage](./static/images/../../main_app/static/images/addpic.png)
+ ![homepage](/main_app/static/images/homepage.PNG)
 
 
 
