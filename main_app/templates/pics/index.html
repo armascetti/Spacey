@@ -3,6 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/pics-index.css' %}"/>
+<script defer src="{% static 'js/pic-index.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +17,12 @@
 </div>
   <div  id="dateOfImage"> <h4 name="date">Date: {{pic.date}} </h4></div>
   <div id="deleteSpaceImage"><a id="deletePicture" href="{% url 'pics_delete' pic.id %}" class="btn danger">Delete</a></div>
+
+  <button class="like_btn" onclick="changeColor()" style="border-radius: 5px; background: transparent; border: 1px solid black;"> 
+    <span id="icon"><i style="color:red;" class="far fa-heart"></i></span>
+
+
+  </button>
   </div>
 {% endfor %}
 </div>
