@@ -16,12 +16,111 @@ html {
 :root {
     font-size: 62.5%
 }
+html{
+  background-image: url(../images/stars4.jpg);
+  height: 100%;
 
+}
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+
   font-family: 'Bebas Neue', cursive;
 }
+header{
+  width: 100%;
+  border-bottom: 4px solid pink;
+}
 
+.homepage-pic {
+border-radius: 90px;
+margin-right: 50px;
+}
+
+#nav-links{
+  display: flex;
+ 
+}
+
+#nav-link-wrapper{
+  height: 100px;
+}
+
+#link{
+ font-size: 1.5em;
+ margin-right: 15px;
+ margin-top: 50px;
+ color: white;
+ text-decoration: none;
+}
+
+#spaceImage{
+  color: white;
+}
+
+#searchTitle{
+  color: white;;
+}
+
+#deleteSpaceImage{
+  color: white;
+}
+
+#titleOfImage{
+  color: white;
+}
+
+#titleOfImage h1, #dateOfImage h4, #deleteSpaceImage{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#dateOfImage{
+  color: white;
+}
+body {
+	background: url(../images/empty-stars.png) repeat 5% 5%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 100;
+	
+	animation-name: STAR-MOVE;
+	animation-duration: 950s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+@keyframes STAR-MOVE {
+	from {
+		left: 0;
+		top: 0;
+	}
+	to { 
+		left: -10000px;
+		top: -2000px;
+	}
+}
+
+@keyframes STAR-MOVE {
+	from {
+		background-position: 5% 5%
+	}
+	to { 
+		background-position: 1300% 600%
+	}
+}
+
+#deletePicture{
+  color: white;
+  font-size: 1.5em;
+  border: 3px solid #551a8b;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 5px; 
+}
+
+#btn-delete {
+  color: white;
+}

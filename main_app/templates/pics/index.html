@@ -9,27 +9,30 @@
 <h1> All Pictures </h1>
 <div>
   {% for pic in all_pics %}
-  <a href="{% url 'pics_delete' pic.id %}" class="btn danger">Delete</a>
-  <img name="url" src="{{pic.url}}" height="300px" width="300px"> 
-  <h1 name="title">Title: {{pic.title}} </h1>
-  <h4 name="date">Date: {{pic.date}} </h4> <br>
+  <div style="border: 3px solid white; margin-bottom: 15px; padding: 20px; border-radius: 50px;">
+  <div id="titleOfImage"> 
+    <h1 name="title">{{pic.title}} </h1>
+    <h1><img style="box-shadow: 1px 7px 45px whitesmoke;" name="url" src="{{pic.url}}" height="300px" width="300px"></h1>
+</div>
+  <div  id="dateOfImage"> <h4 name="date">Date: {{pic.date}} </h4></div>
+  <div id="deleteSpaceImage"><a id="deletePicture" href="{% url 'pics_delete' pic.id %}" class="btn danger">Delete</a></div>
+  </div>
 {% endfor %}
-
-
 </div>
 <section class ="Space-pics">
 
   {% if url %}
   <h1> Would You Like to Save This Picture? </h1>
-  <img name="url" src="{{url}}" height="300px" width="300px"> 
-  <h1 name="title">Title: {{title}} </h1>
-  <h4 name="date">Date: {{date}} </h4>
+  <img style="box-shadow: 1px 7px 45px whitesmoke;" name="url" src="{{url}}" height="300px" width="300px"> 
+  <h1 style="color: white; font-size: 2em;" name="title">Title: {{title}} </h1>
+  <h4 style="color: white; font-size: 2em;" name="date">Date: {{date}} </h4>
   <form action="{% url 'pics_add' %}" method = "post">
     {% csrf_token %}
     <input hidden value="{{ title}}" name="title">
     <input hidden value="{{ date}}" name="date">
     <input hidden value="{{ url}}" name="url">
-    <button type="submit" value="save">Save</button> 
+    <button style="background: none;color: white;padding: 7px;border: 1px solid white;
+    border-radius: 13px; "type="submit" value="save">Save</button> 
 </form> 
   {% else %}
 

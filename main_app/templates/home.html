@@ -6,12 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<h1> Welcome to Spacey!! </h1>
-<section class="logo-container">
-  <div class="space-container">
-    <img class="space-home" src="{% static 'images/homepic.jpg' %}" alt="Outerspace homepage" />
+<div><h1 style="color: white; margin-right: 25px; font-size: 3em;"> Welcome to Spacey!! </h1>
   </div>
-</section>
+ <div> <img style="border-radius: 50%;" class="space-home" src="{% static 'images/homepic.jpg' %}" alt="Outerspace homepage" />
+ </div>
 {% if not user.is_authenticated %}
 <section>
   <form action="{% url 'home' %}" method="post" class="login">

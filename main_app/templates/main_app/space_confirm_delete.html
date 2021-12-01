@@ -7,16 +7,17 @@
   <h1>Delete Picture? </h1>
 </div>
 <h2>Are you sure you want to delete {{ object.title}} ?</h2>
-<img name="url" src="{{object.url}}" height="300px" width="300px"> 
+<img style="box-shadow: 1px 7px 45px whitesmoke;" name="url" src="{{object.url}}" height="300px" width="300px"> 
 <form action="" method="POST" class="form">
   {% csrf_token %}
   <a 
     href="{% url 'pics_index' %}" 
-    class="btn secondary"
+    style="background: none;color: white;padding: 7px;border: 1px solid white; border-radius: 13px;"
   >
     Cancel
   </a>
-  <button type="submit" class="btn danger">Yes - Delete!</button>
+  <button type="submit" style="background: none;color: white;padding: 7px;border: 1px solid white; border-radius: 13px; ">Yes - Delete!</button>
 </form>
 
 {% endblock %}
+
