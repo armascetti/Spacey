@@ -15,12 +15,11 @@ Click [here](https://spacey-space.herokuapp.com/) to check out Spacey!
 
 
 # Screenshots
- ![homepage](/main_app/static/images/addpic.PNG)
-
-
-
  ![homepage](/main_app/static/images/homepage.PNG)
 
+
+
+ ![homepage](/main_app/static/images/addpic.PNG)
 
 
 
