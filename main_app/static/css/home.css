@@ -15,15 +15,8 @@ main > section {
   flex-direction: column;
 }
 
-.header-logo-container {
-  display: none;
-}
 
-.logo-container {
-  max-width: 375px;
-}
-
-.cat-container {
+.space-container {
   width: 80%;
 }
 

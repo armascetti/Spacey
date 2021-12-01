@@ -10,6 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,10 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7f+t_lmup*(o1r+1ph&a#g=^*kr&n^+0qwjfq#jej7ugl+hh&+'
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG') == 'True' 
+DEBUG_PROPAGATE_EXCEPTIONS = True
+
 
 ALLOWED_HOSTS = []
 
@@ -130,3 +140,7 @@ NASA_API_KEY = 'dXrxMJfWAGWQ1WbP2K447FTAKr3VUfBuDf6GV88I'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import django_on_heroku
+django_on_heroku.settings(locals())

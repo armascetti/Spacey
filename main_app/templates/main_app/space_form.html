@@ -8,10 +8,12 @@
 {% block content %}
 
 <h1> Search by Date to Find the Astronomy Picture for That Day! </h1>
-<form action="{% url 'pics_create' %}" method = "get">
+<div class="date-form">
+    <form  action="{% url 'pics_create' %}" method = "get">
     {% csrf_token %}
     <input type="text" name="date" placeholder="YYYY-MM-DD">
-    <button type="submit" value="Search"> Search</button> 
+    <button class="search btn" type="submit" value="Search"> Search</button> 
+</div>
 </form> 
 
     {% endblock %}
